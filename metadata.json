@@ -1,0 +1,6 @@
+{
+  "name": "سامانه تحلیل استراتژیک تلنت و روان‌سنجی شغلی",
+  "description": "سامانه ارزیابی عمیق انطباق شغلی کاندیداها بر پایه شرح شغل، رزومه، آزمون‌های هوگان (HPI و HDS) و تست شناختی Swift با تمرکز بر دارک‌سایدها و مصاحبه BEI",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
