@@ -125,3 +125,74 @@ export const DEFAULT_JOB_POSITIONS: JobPosition[] = [
     }
   }
 ];
+
+/* ------------------------------------------------------------------
+ * مخزن مدارک (Document Vault)
+ * مدارک بارگذاری‌شده به تفکیک «موقعیت شغلی» و «پرونده کاندیدا» نگهداری
+ * می‌شوند تا اعضای تیم بتوانند بعداً آن‌ها را فراخوانی کنند.
+ * ------------------------------------------------------------------ */
+
+export type DocumentKind = 'jd' | 'resume' | 'hds' | 'hpi' | 'swift' | 'other';
+
+export interface DocumentKindMeta {
+  kind: DocumentKind;
+  label: string;
+  hint: string;
+  accept: string;
+}
+
+export const DOCUMENT_KINDS: DocumentKindMeta[] = [
+  {
+    kind: 'jd',
+    label: 'شرح شغل و شایستگی‌ها',
+    hint: 'فایل شرح وظایف، چارت سازمانی یا مدل شایستگی این موقعیت',
+    accept: '.docx,.txt,.md,.csv'
+  },
+  {
+    kind: 'resume',
+    label: 'رزومه و سوابق کاندیدا',
+    hint: 'رزومه (Word/متن)، فرم درخواست شغل یا خلاصه سوابق',
+    accept: '.docx,.txt,.md'
+  },
+  {
+    kind: 'hds',
+    label: 'کارنامه هوگان HDS (بخش تاریک)',
+    hint: 'گزارش خام آزمون دارک‌ساید جهت بایگانی و ارجاع بعدی',
+    accept: '.docx,.txt,.md,.xlsx,.xls,.csv'
+  },
+  {
+    kind: 'hpi',
+    label: 'کارنامه هوگان HPI (بخش روشن)',
+    hint: 'گزارش خام صفات عملکرد روزمره',
+    accept: '.docx,.txt,.md,.xlsx,.xls,.csv'
+  },
+  {
+    kind: 'swift',
+    label: 'کارنامه شناختی Swift',
+    hint: 'فایل اکسل نمرات استدلال کلامی، محاسباتی و انتزاعی',
+    accept: '.xlsx,.xls,.csv'
+  },
+  {
+    kind: 'other',
+    label: 'سایر مدارک پرونده',
+    hint: 'گواهی‌نامه‌ها، فرم‌های ارزیابی قبلی، یادداشت مصاحبه',
+    accept: '.docx,.txt,.md,.xlsx,.xls,.csv'
+  }
+];
+
+export interface StoredDocument {
+  id: string;
+  positionId: string;
+  positionTitle: string;
+  candidateCode: string; // نام یا کد پرونده کاندیدا
+  kind: DocumentKind;
+  fileName: string;
+  sizeBytes: number;
+  uploadedAt: string; // ISO
+  uploadedById: string;
+  uploadedByName: string;
+  extractedText: string; // متن استخراج‌شده (برای جست‌وجو و پیش‌نمایش)
+  dataUrl?: string; // نسخه اصل فایل (در صورت وجود فضای کافی در مرورگر)
+  linkedReportId?: string;
+  note?: string;
+}

@@ -145,4 +145,9 @@ export interface AssessmentReport {
   swift: SwiftCognitive;
   createdAt: string;
   notes?: string;
+  // --- اتصال پرونده به میز کار موقعیت شغلی و مالک تحلیل ---
+  positionId?: string; // شناسه موقعیت شغلی که تحلیل ذیل آن ثبت شده است
+  ownerId?: string; // شناسه کارشناس ارزیاب ثبت‌کننده
+  ownerName?: string; // نام کارشناس ارزیاب ثبت‌کننده
+  documentIds?: string[]; // مدارک بارگذاری‌شده مرتبط با این پرونده
 }
